@@ -1,21 +1,20 @@
 #include "get_next_line.h"
-#include <stdio.h>
 
 char	*trim(char **str)
 {
 	int		i;
 	char	*trimmed;
 	if (!*str || !(**str))
-	{
-		free(*str);
 		return (NULL);
-	}
 	i = 0;
 	while ((*str)[i] != '\n' && (*str)[i])
 		i++;
 	trimmed = malloc(i + 2);
 	if (!trimmed)
+	{
+		free(trimmed)
 		return (NULL);
+	}
 	ft_strlcpy(trimmed, (*str), i+2);
 	*str = ft_strdup(&(*str)[i+1]);
 	return (trimmed);
