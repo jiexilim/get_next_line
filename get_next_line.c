@@ -13,6 +13,7 @@ char	*trim(char **str)
 	if (!trimmed)
 	{
 		free(trimmed);
+		free(*str);
 		return (NULL);
 	}
 	ft_strlcpy(trimmed, (*str), i+2);
@@ -29,7 +30,10 @@ char	*get_next_line(int fd)
 		return (NULL);
 	buff = malloc(BUFFER_SIZE + 1);
 	if (!buff)
+	{
+		free(buff);
 		return (NULL);
+	}
 	while (read(fd, buff, BUFFER_SIZE) > 0)
 	{
 		if (!store_str)
