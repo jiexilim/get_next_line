@@ -20,10 +20,12 @@ char	*get_next_line(int fd)
 	char		buff[BUFFER_SIZE];
 	int			read_buff;
 
-	if (fd < 0)
+	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
 	if (!store_str)
-		store_str = malloc(BUFFER_SIZE);
+		store_str = malloc(BUFFER_SIZE + 1);
+	if(!store_str)
+		return (NULL);
 	read_buff = read(fd, buff, BUFFER_SIZE);
 	while (read_buff > 0)
 	{
