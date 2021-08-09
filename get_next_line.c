@@ -20,7 +20,7 @@ char	*get_next_line(int fd)
 	char		buff[BUFFER_SIZE];
 	int			read_buff;
 
-	if (!store_str)
+	if (!store_str && fd > 0)
 		store_str = malloc(BUFFER_SIZE);
 	read_buff = read(fd, buff, BUFFER_SIZE);
 	while (read_buff > 0)
@@ -33,15 +33,16 @@ char	*get_next_line(int fd)
 	return trim(&store_str);
 }
 
-// int main()
-// {
-// 	int fd = open("file.txt", O_RDONLY);
-// 	int i = 0;
-// 	while (i < 3)
-// 	{
-// 		printf("%s", get_next_line(fd));
-// 		// get_next_line(fd);
-// 		i++;
-// 	}
-// 	return (0);
-// }
+#include <stdio.h>
+int main()
+{
+	int fd = open("file", O_RDWR);
+	int i = 0;
+	while (i < 3)
+	{
+		printf("%s", get_next_line(1000));
+		// get_next_line(fd);
+		i++;
+	}
+	return (0);
+}
