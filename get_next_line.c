@@ -4,9 +4,14 @@ char	*trim(char **str)
 {
 	int		i;
 	char	*trimmed;
+<<<<<<< HEAD
 	if (!*str || !(**str))
 	{
 		free(*str);
+=======
+	
+	if (!*str)
+>>>>>>> parent of d86e137 (Update .c files)
 		return (NULL);
 	}
 	i = 0;
@@ -65,7 +70,6 @@ char	*get_next_line(int fd)
 // 	while (i < 2)
 // 	{
 // 		printf("%s", get_next_line(fd));
-// 		// get_next_line(fd);
 // 		i++;
 // 	}
 // 	return (0);
