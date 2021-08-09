@@ -7,11 +7,12 @@ char	*trim(char **str)
 	char	*trimmed;
 	char	*temp;
 	
-	if (!*str)
+	if (!*str && **str)
 	{	
 		free(*str);
 		return (NULL);
 	}
+	i = 0;
 	while ((*str)[i] != '\n' && (*str)[i])
 		i++;
 	trimmed = malloc(i + 2);
