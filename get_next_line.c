@@ -25,7 +25,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	buff = malloc(BUFFER_SIZE + 1)
+	buff = malloc(BUFFER_SIZE + 1);
 	if (!buff)
 		return (NULL);
 	while (read(fd, buff, BUFFER_SIZE) > 0)
