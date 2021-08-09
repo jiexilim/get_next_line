@@ -6,10 +6,11 @@ char	*trim(char **str)
 	char	*trimmed;
 	
 	i = 0;
-	while ((*str)[i] != '\n')
+	while ((*str)[i] != '\n' && (*str)[i])
 		i++;
-	trimmed = malloc(i + 1);
-	ft_strlcpy(trimmed, (*str), i);
+	trimmed = malloc(i + 2);
+	ft_strlcpy(trimmed, (*str), i+2);
+	*str = ft_strdup(&(*str)[i+1]);
 	return (trimmed);
 }
 
@@ -19,7 +20,8 @@ char	*get_next_line(int fd)
 	char		buff[BUFFER_SIZE];
 	int			read_buff;
 
-	store_str = malloc(BUFFER_SIZE);
+	if (!store_str)
+		store_str = malloc(BUFFER_SIZE);
 	read_buff = read(fd, buff, BUFFER_SIZE);
 	while (read_buff > 0)
 	{
@@ -31,15 +33,15 @@ char	*get_next_line(int fd)
 	return trim(&store_str);
 }
 
-#include <stdio.h>
-int main()
-{
-	int fd = open("file.txt", O_RDONLY);
-	int i;
-	while (1)
-	{
-		printf("%s", get_next_line(fd));
-		break ;
-	}
-	return (0);
-}
+// int main()
+// {
+// 	int fd = open("file.txt", O_RDONLY);
+// 	int i = 0;
+// 	while (i < 3)
+// 	{
+// 		printf("%s", get_next_line(fd));
+// 		// get_next_line(fd);
+// 		i++;
+// 	}
+// 	return (0);
+// }
