@@ -19,9 +19,9 @@ char	*trim(char **str)
 	if (!trimmed)
 		return (NULL);
 	ft_strlcpy(trimmed, (*str), i+2);
-	temp = ft_strdup(&(*str)[i+1]);
+	*str = ft_strdup(&(*str)[i+1]);
 	// free(*str);
-	*str = temp;
+	// *str = temp;
 	return (trimmed);
 }
 
