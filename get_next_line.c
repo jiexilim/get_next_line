@@ -13,6 +13,9 @@ char	*trim(char **str)
 	{
 		free(*str);
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 3180f02 (Update .c files)
+=======
 >>>>>>> parent of 3180f02 (Update .c files)
 =======
 >>>>>>> parent of 3180f02 (Update .c files)
@@ -32,9 +35,12 @@ char	*trim(char **str)
 	*str = ft_strdup(&(*str)[i+1]);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	// free(*str);
 	// *str = temp;
 =======
+=======
+>>>>>>> parent of 3180f02 (Update .c files)
 =======
 >>>>>>> parent of 3180f02 (Update .c files)
 	if (!trimmed)
@@ -42,6 +48,9 @@ char	*trim(char **str)
 	if (!(*str))
 		free(*str);
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 3180f02 (Update .c files)
+=======
 >>>>>>> parent of 3180f02 (Update .c files)
 =======
 >>>>>>> parent of 3180f02 (Update .c files)
@@ -54,7 +63,10 @@ char	*get_next_line(int fd)
 	char		*buff;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char		*temp;
+=======
+>>>>>>> parent of 3180f02 (Update .c files)
 =======
 >>>>>>> parent of 3180f02 (Update .c files)
 =======
