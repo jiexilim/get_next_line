@@ -45,7 +45,7 @@ char	*get_next_line(int fd)
 // {
 // 	int fd = open("file", O_RDWR);
 // 	int i = 0;
-// 	while (i < 4)
+// 	while (i < 2)
 // 	{
 // 		printf("%s", get_next_line(fd));
 // 		// get_next_line(fd);
