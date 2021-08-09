@@ -4,21 +4,9 @@ char	*trim(char **str)
 {
 	int		i;
 	char	*trimmed;
-<<<<<<< HEAD
-	// char	*temp;
-	
-	if (!*str && !(**str))
-=======
 	if (!*str || !(**str))
 	{
 		free(*str);
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of 3180f02 (Update .c files)
-=======
->>>>>>> parent of 3180f02 (Update .c files)
-=======
->>>>>>> parent of 3180f02 (Update .c files)
 		return (NULL);
 	}
 	i = 0;
@@ -33,27 +21,10 @@ char	*trim(char **str)
 	}
 	ft_strlcpy(trimmed, (*str), i+2);
 	*str = ft_strdup(&(*str)[i+1]);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-	// free(*str);
-	// *str = temp;
-=======
-=======
->>>>>>> parent of 3180f02 (Update .c files)
-=======
->>>>>>> parent of 3180f02 (Update .c files)
 	if (!trimmed)
 		free(trimmed);
 	if (!(*str))
 		free(*str);
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of 3180f02 (Update .c files)
-=======
->>>>>>> parent of 3180f02 (Update .c files)
-=======
->>>>>>> parent of 3180f02 (Update .c files)
 	return (trimmed);
 }
 
@@ -61,17 +32,7 @@ char	*get_next_line(int fd)
 {
 	static char	*store_str;
 	char		*buff;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 	char		*temp;
-=======
->>>>>>> parent of 3180f02 (Update .c files)
-=======
->>>>>>> parent of 3180f02 (Update .c files)
-=======
->>>>>>> parent of 3180f02 (Update .c files)
-
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
 	buff = malloc(BUFFER_SIZE + 1);
