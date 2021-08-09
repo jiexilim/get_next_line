@@ -8,10 +8,7 @@ char	*trim(char **str)
 	char	*temp;
 	
 	if (!*str && !(**str))
-	{	
-		free(*str);
 		return (NULL);
-	}
 	i = 0;
 	while ((*str)[i] != '\n' && (*str)[i])
 		i++;
