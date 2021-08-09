@@ -12,6 +12,9 @@ char	*trim(char **str)
 	if (!*str || !(**str))
 	{
 		free(*str);
+<<<<<<< HEAD
+>>>>>>> parent of 3180f02 (Update .c files)
+=======
 >>>>>>> parent of 3180f02 (Update .c files)
 		return (NULL);
 	}
@@ -28,13 +31,19 @@ char	*trim(char **str)
 	ft_strlcpy(trimmed, (*str), i+2);
 	*str = ft_strdup(&(*str)[i+1]);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	// free(*str);
 	// *str = temp;
 =======
+=======
+>>>>>>> parent of 3180f02 (Update .c files)
 	if (!trimmed)
 		free(trimmed);
 	if (!(*str))
 		free(*str);
+<<<<<<< HEAD
+>>>>>>> parent of 3180f02 (Update .c files)
+=======
 >>>>>>> parent of 3180f02 (Update .c files)
 	return (trimmed);
 }
@@ -44,7 +53,10 @@ char	*get_next_line(int fd)
 	static char	*store_str;
 	char		*buff;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	char		*temp;
+=======
+>>>>>>> parent of 3180f02 (Update .c files)
 =======
 >>>>>>> parent of 3180f02 (Update .c files)
 
