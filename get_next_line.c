@@ -5,16 +5,25 @@ char	*trim(char **str)
 {
 	int		i;
 	char	*trimmed;
-	if (!*str || !(**str))
+	char	*temp;
+	
+	if (!*str)
+	{	
+		free(*str);
 		return (NULL);
-	i = 0;
+	}
 	while ((*str)[i] != '\n' && (*str)[i])
 		i++;
 	trimmed = malloc(i + 2);
 	if (!trimmed)
 		return (NULL);
 	ft_strlcpy(trimmed, (*str), i+2);
-	*str = ft_strdup(&(*str)[i+1]);
+	temp = ft_strdup(&(*str)[i+1]);
+	free(*str);
+	if (!*temp)
+		*str = temp;
+	else
+		free(temp);
 	return (trimmed);
 }
 
@@ -22,7 +31,7 @@ char	*get_next_line(int fd)
 {
 	static char	*store_str;
 	char		*buff;
-	char 		*temp;
+	char		*temp;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
@@ -52,7 +61,7 @@ char	*get_next_line(int fd)
 // {
 // 	int fd = open("file", O_RDWR);
 // 	int i = 0;
-// 	while (i < 4)
+// 	while (i < 2)
 // 	{
 // 		printf("%s", get_next_line(fd));
 // 		// get_next_line(fd);
