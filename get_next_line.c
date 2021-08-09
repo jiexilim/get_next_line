@@ -1,11 +1,14 @@
 #include "get_next_line.h"
-
+// #include <stdio.h>
 char	*trim(char **str)
 {
 	int		i;
 	char	*trimmed;
 	if (!*str || !(**str))
+	{
+		free(*str);
 		return (NULL);
+	}
 	i = 0;
 	while ((*str)[i] != '\n' && (*str)[i])
 		i++;
@@ -55,7 +58,7 @@ char	*get_next_line(int fd)
 // {
 // 	int fd = open("file", O_RDWR);
 // 	int i = 0;
-// 	while (i < 2)
+// 	while (i < 4)
 // 	{
 // 		printf("%s", get_next_line(fd));
 // 		// get_next_line(fd);
