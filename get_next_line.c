@@ -6,7 +6,10 @@ char	*trim(char **str)
 	int		i;
 	char	*trimmed;
 	if (!*str || !(**str))
+	{
+		free(*str);
 		return (NULL);
+	}
 	i = 0;
 	while ((*str)[i] != '\n' && (*str)[i])
 		i++;
