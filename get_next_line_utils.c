@@ -1,3 +1,5 @@
+#include "get_next_line.h"
+
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*join;
