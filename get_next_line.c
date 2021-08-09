@@ -5,7 +5,7 @@ char	*trim(char **str)
 {
 	int		i;
 	char	*trimmed;
-	char	*temp;
+	// char	*temp;
 	
 	if (!*str && **str)
 	{	
