@@ -5,7 +5,7 @@ char	*trim(char **str)
 {
 	int		i;
 	char	*trimmed;
-	char	*temp;
+	// char	*temp;
 	
 	if (!*str && !(**str))
 		return (NULL);
@@ -16,9 +16,9 @@ char	*trim(char **str)
 	if (!trimmed)
 		return (NULL);
 	ft_strlcpy(trimmed, (*str), i+2);
-	temp = ft_strdup(&(*str)[i+1]);
-	free(*str);
-	*str = temp;
+	*str = ft_strdup(&(*str)[i+1]);
+	// free(*str);
+	// *str = temp;
 	return (trimmed);
 }
 
