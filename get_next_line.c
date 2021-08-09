@@ -12,7 +12,7 @@ char	*trim(char **str)
 	trimmed = malloc(i + 2);
 	if (!trimmed)
 	{
-		free(trimmed)
+		free(trimmed);
 		return (NULL);
 	}
 	ft_strlcpy(trimmed, (*str), i+2);
