@@ -27,6 +27,8 @@ char	*get_next_line(int fd)
 	if(!store_str)
 		return (NULL);
 	read_buff = read(fd, buff, BUFFER_SIZE);
+	if (read_buff < 0)
+		return (NULL);
 	while (read_buff > 0)
 	{
 		if (read_buff < 0)
@@ -41,6 +43,7 @@ char	*get_next_line(int fd)
 // int main()
 // {
 // 	int fd = open("file", O_RDWR);
+// 	printf("%d\n", fd);
 // 	int i = 0;
 // 	while (i < 3)
 // 	{
