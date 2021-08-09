@@ -21,10 +21,7 @@ char	*trim(char **str)
 	ft_strlcpy(trimmed, (*str), i+2);
 	temp = ft_strdup(&(*str)[i+1]);
 	free(*str);
-	if (!*temp)
-		*str = temp;
-	else
-		free(temp);
+	*str = temp;
 	return (trimmed);
 }
 
