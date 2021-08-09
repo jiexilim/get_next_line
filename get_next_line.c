@@ -21,9 +21,12 @@ char	*trim(char **str)
 char	*get_next_line(int fd)
 {
 	static char	*store_str;
-	char		buff[BUFFER_SIZE];
+	char		*buff;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
+		return (NULL);
+	buff = malloc(BUFFER_SIZE + 1)
+	if (!buff)
 		return (NULL);
 	while (read(fd, buff, BUFFER_SIZE) > 0)
 	{
@@ -38,6 +41,7 @@ char	*get_next_line(int fd)
 		}
 		store_str = ft_strjoin(store_str, buff);
 	}
+	free(buff);
 	return trim(&store_str);
 }
 
