@@ -10,7 +10,7 @@ char	*trim(char **str)
 	i = 0;
 	while ((*str)[i] && (*str)[i] != '\n')
 		i++;
-	if (!(*str)[i] || (*str)[i] == '\n' && i == 1)
+	if (!(*str)[i] || ((*str)[i] == '\n' && i == 1))
 	{
 		trim = ft_strdup(*str);
 		free(*str);
