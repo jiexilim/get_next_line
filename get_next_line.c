@@ -1,5 +1,34 @@
 #include "get_next_line.h"
-#include <stdio.h>
+
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s)
+	{
+		if (*s == (char) c)
+			return ((char *) s);
+		s++;
+	}
+	if (!c)
+		return ((char *) s);
+	return (NULL);
+}
+
+void	*ft_calloc(size_t nelem, size_t elsize)
+{
+	char	*ptr;
+	size_t	i;
+
+	ptr = malloc(nelem * elsize);
+	if (!ptr)
+		return (NULL);
+	i = 0;
+	while (i < nelem * elsize)
+	{
+		ptr[i] = 0;
+		i++;
+	}
+	return (ptr);
+}
 
 char	*trim(char **str)
 {
@@ -56,16 +85,3 @@ char	*get_next_line(int fd)
 		return (NULL);
 	return (trim(&str_left));
 }
-
-// int main()
-// {
-// 	int fd = open("file", O_RDWR);
-// 	int i = 0;
-// 	while (i < 5)
-// 	{
-// 		printf("%s", get_next_line(fd));
-// 		// get_next_line(fd);
-// 		i++;
-// 	}
-// 	return (0);
-// }          
