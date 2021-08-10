@@ -1,5 +1,5 @@
 #include "get_next_line.h"
-#include <stdio.h>
+// #include <stdio.h>
 
 char	*trim(char **str)
 {
@@ -56,15 +56,15 @@ char	*get_next_line(int fd)
 	return (trim(&str_left));
 }
 
-int main()
-{
-	int fd = open("file", O_RDWR);
-	int i = 0;
-	while (i < 4)
-	{
-		printf("%s", get_next_line(fd));
-		// get_next_line(fd);
-		i++;
-	}
-	return (0);
-}          
+// int main()
+// {
+// 	int fd = open("file", O_RDWR);
+// 	int i = 0;
+// 	while (i < 4)
+// 	{
+// 		printf("%s", get_next_line(fd));
+// 		// get_next_line(fd);
+// 		i++;
+// 	}
+// 	return (0);
+// }          
