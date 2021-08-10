@@ -51,7 +51,7 @@ char	*get_next_line(int fd)
 		n_bytes_rd = read(fd, buff, BUFFER_SIZE);
 	}
 	// printf("here: %d, bytes: %d\n", !*str_left, n_bytes_rd);
-	if (n_bytes_rd < 0 || (n_bytes_rd == 0 && !str_left))
+	if (n_bytes_rd < 0 || (n_bytes_rd == 0 && !*str_left))
 		return (NULL);
 	return (trim(&str_left));
 }
