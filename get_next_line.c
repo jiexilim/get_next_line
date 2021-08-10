@@ -1,5 +1,5 @@
 #include "get_next_line.h"
-// #include <stdio.h>
+#include <stdio.h>
 
 char	*trim(char **str)
 {
@@ -37,11 +37,11 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
 	n_bytes_rd = read(fd, buff, BUFFER_SIZE);
-	if (!str_left)
-		str_left = ft_calloc(1, sizeof(char));
 	while (n_bytes_rd > 0)
 	{
 		buff[n_bytes_rd] = '\0';
+		if (!str_left)
+			str_left = ft_calloc(1, sizeof(char));
 		temp = ft_strdup(str_left);
 		free(str_left);
 		str_left = ft_strjoin(temp, buff);
@@ -51,20 +51,20 @@ char	*get_next_line(int fd)
 		n_bytes_rd = read(fd, buff, BUFFER_SIZE);
 	}
 	// printf("here: %d, bytes: %d\n", !*str_left, n_bytes_rd);
-	if (n_bytes_rd < 0 || (n_bytes_rd == 0 && !*str_left))
+	if (n_bytes_rd < 0 || (n_bytes_rd == 0 && !str_left))
 		return (NULL);
 	return (trim(&str_left));
 }
 
-// int main()
-// {
-// 	int fd = open("file", O_RDWR);
-// 	int i = 0;
-// 	while (i < 4)
-// 	{
-// 		printf("%s", get_next_line(fd));
-// 		// get_next_line(fd);
-// 		i++;
-// 	}
-// 	return (0);
-// }          
+int main()
+{
+	int fd = open("file", O_RDWR);
+	int i = 0;
+	while (i < 4)
+	{
+		printf("%s", get_next_line(fd));
+		// get_next_line(fd);
+		i++;
+	}
+	return (0);
+}          
