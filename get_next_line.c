@@ -10,7 +10,7 @@ char	*trim(char **str)
 	i = 0;
 	while ((*str)[i] && (*str)[i] != '\n')
 		i++;
-	if (!(*str)[i] || ((*str)[i] == '\n' && i == 1))
+	if (!(*str)[i])
 	{
 		trim = ft_strdup(*str);
 		free(*str);
@@ -21,7 +21,9 @@ char	*trim(char **str)
 		trim = ft_substr(*str, 0, i + 1);
 		temp = ft_strdup(&(*str)[i + 1]);
 		free(*str);
-		*str = ft_strdup(temp);
+		*str = 0;
+		if (*temp)
+			*str = ft_strdup(temp);
 		free(temp);
 	}
 	return (trim);
@@ -50,7 +52,6 @@ char	*get_next_line(int fd)
 			break ;
 		n_bytes_rd = read(fd, buff, BUFFER_SIZE);
 	}
-	// printf("here: %d, bytes: %d\n", !*str_left, n_bytes_rd);
 	if (n_bytes_rd < 0 || (n_bytes_rd == 0 && !str_left))
 		return (NULL);
 	return (trim(&str_left));
@@ -60,7 +61,7 @@ char	*get_next_line(int fd)
 // {
 // 	int fd = open("file", O_RDWR);
 // 	int i = 0;
-// 	while (i < 2)
+// 	while (i < 5)
 // 	{
 // 		printf("%s", get_next_line(fd));
 // 		// get_next_line(fd);
