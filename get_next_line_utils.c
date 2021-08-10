@@ -73,26 +73,76 @@ char	*ft_strdup(char *src)
 	return (dest);
 }
 
+static char    *arr_app_null(char *arr, int i)
+{
+    arr[i] = '\0';
+    return (arr);
+}
+
 char    *ft_substr(char const *s, unsigned int start, size_t len)
 {
-    char    *str;
-    size_t    size;
+    char    *newsub;
+    size_t    i;
+    size_t    s_len;
 
     if (!s)
-        return (0);
-    if (start > ft_strlen(s))
+        return (NULL);
+    s_len = ft_strlen(s);
+    if (start > s_len)
     {
-        str = malloc(sizeof(*s) * 1);
-        str[0] = '\0';
-        return (str);
+        newsub = malloc(1);
+        return (arr_app_null(newsub, 0));
     }
-    if (len <= ft_strlen(s + start))
-        size = len;
+    else if (len > s_len)
+    {
+        len = s_len;
+        newsub = malloc(len - start + 1);
+    }
     else
-        size = ft_strlen(s + start);
-    str = malloc(sizeof(*s) * (size + 1));
-    if (!str)
-        return (0);
-    ft_strlcpy(str, (s + start), size + 1);
-    return (str);
+        newsub = malloc(len + 1);
+    if (!newsub)
+        return (newsub);
+    i = 0;
+    while (s[start] && i < len)
+        newsub[i++] = s[start++];
+    return (arr_app_null(newsub, i));
 }
+
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s)
+	{
+		if (*s == (char) c)
+			return ((char *) s);
+		s++;
+	}
+	if (!c)
+		return ((char *) s);
+	return (NULL);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	size_t	i;
+	char	*ptr;
+
+	i = 0;
+	ptr = s;
+	while (i < n)
+	{
+		ptr[i] = 0;
+		i++;
+	}
+}
+
+void	*ft_calloc(size_t nelem, size_t elsize)
+{
+	void	*ptr;
+
+	ptr = malloc(nelem * elsize);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, nelem * elsize);
+	return (ptr);
+}
+

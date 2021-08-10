@@ -1,68 +1,59 @@
 #include "get_next_line.h"
-#include <stdio.h>
-#include <string.h>
+// #include <stdio.h>
+
 char	*trim(char **str)
 {
 	int		i;
-	char	*trimmed;
+	char	*trim;
 	char	*temp;
-	
+
 	i = 0;
 	while ((*str)[i] && (*str)[i] != '\n')
-		i++;
+        i++;
 	if (!(*str)[i])
 	{
-		trimmed = ft_strdup(*str);
-		return (trimmed);
+		trim = ft_strdup(*str);
+		free(*str);
+		*str = 0;
 	}
-	// trimmed = malloc(i + 2);
-	// if (!trimmed)
-	// 	return (NULL);
-	// ft_strlcpy(trimmed, (*str), i+2);	
-	trimmed = ft_substr(*str, 0, i + 1);
-	ft_strlen(*str + i + 1);
-	temp = ft_strdup(*str + i + 1);
-	free(*str);
-	if (temp[0] != '\0')
-		*str = temp;
 	else
+	{
+		trim = ft_substr(*str, 0, i + 1);
+		temp = ft_strdup(&(*str)[i + 1]);
+		free(*str);
+		*str = ft_strdup(temp);
 		free(temp);
-	return (trimmed);
+	}
+	return (trim);
 }
 
-char*get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-	static char	*store_str;
-	char		*buff;
+	static char	*str_left;
+	char		buff[BUFFER_SIZE + 1];
 	char		*temp;
-	int			rd;
+	int			n_bytes_rd;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	buff = malloc(BUFFER_SIZE + 1);
-	if (!buff)
-		return (NULL);
-	rd = read(fd, buff, BUFFER_SIZE);
-	while (rd > 0)
+	n_bytes_rd = read(fd, buff, BUFFER_SIZE);
+	if (!str_left)
+		str_left = ft_calloc(1, sizeof(char));
+	while (n_bytes_rd > 0)
 	{
-		buff[rd] = '\0';
-		if (!store_str)
-		{
-			store_str = malloc(BUFFER_SIZE + 1);
-			if(!store_str)
-			{
-				free(store_str);
-				return (NULL);
-			}
-			store_str[0] = '\0';
-		}
-		temp = ft_strjoin(store_str, buff);
-		free(store_str);
-		store_str = temp;
-		rd = read(fd, buff, BUFFER_SIZE);
+		buff[n_bytes_rd] = '\0';
+		temp = ft_strdup(str_left);
+		free(str_left);
+		str_left = ft_strjoin(temp, buff);
+		free(temp);
+		if (ft_strchr(str_left, '\n'))
+			break ;
+		n_bytes_rd = read(fd, buff, BUFFER_SIZE);
 	}
-	free(buff);
-	return (trim(&store_str));
+	// printf("here: %d, bytes: %d\n", !*str_left, n_bytes_rd);
+	if (n_bytes_rd < 0 || (n_bytes_rd == 0 && !str_left))
+		return (NULL);
+	return (trim(&str_left));
 }
 
 // int main()
