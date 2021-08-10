@@ -60,7 +60,7 @@ char	*trim(char **str)
 
 char	*get_next_line(int fd)
 {
-	static char	*str_left;
+	static char	*fd_arr[1024];
 	char		buff[BUFFER_SIZE + 1];
 	char		*temp;
 	int			n_bytes_rd;
@@ -71,17 +71,17 @@ char	*get_next_line(int fd)
 	while (n_bytes_rd > 0)
 	{
 		buff[n_bytes_rd] = '\0';
-		if (!str_left)
-			str_left = ft_calloc(1, sizeof(char));
-		temp = ft_strdup(str_left);
-		free(str_left);
-		str_left = ft_strjoin(temp, buff);
+		if (!fd_arr[fd])
+			fd_arr[fd] = ft_calloc(1, sizeof(char));
+		temp = ft_strdup(fd_arr[fd]);
+		free(fd_arr[fd]);
+		fd_arr[fd] = ft_strjoin(temp, buff);
 		free(temp);
-		if (ft_strchr(str_left, '\n'))
+		if (ft_strchr(fd_arr[fd], '\n'))
 			break ;
 		n_bytes_rd = read(fd, buff, BUFFER_SIZE);
 	}
-	if (n_bytes_rd < 0 || (n_bytes_rd == 0 && !str_left))
+	if (n_bytes_rd < 0 || (n_bytes_rd == 0 && !fd_arr[fd]))
 		return (NULL);
-	return (trim(&str_left));
+	return (trim(&(fd_arr[fd])));
 }
