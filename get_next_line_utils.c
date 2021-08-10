@@ -15,7 +15,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*join;
 	int		i;
 
-	if (!s1)
+	if (!s1 || !s2)
 		return (NULL);
 	join = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!join)
@@ -73,3 +73,26 @@ char	*ft_strdup(char *src)
 	return (dest);
 }
 
+char    *ft_substr(char const *s, unsigned int start, size_t len)
+{
+    char    *str;
+    size_t    size;
+
+    if (!s)
+        return (0);
+    if (start > ft_strlen(s))
+    {
+        str = malloc(sizeof(*s) * 1);
+        str[0] = '\0';
+        return (str);
+    }
+    if (len <= ft_strlen(s + start))
+        size = len;
+    else
+        size = ft_strlen(s + start);
+    str = malloc(sizeof(*s) * (size + 1));
+    if (!str)
+        return (0);
+    ft_strlcpy(str, (s + start), size + 1);
+    return (str);
+}
